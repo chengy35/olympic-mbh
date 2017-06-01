@@ -1,0 +1,19 @@
+function [video_data_dir,video_dir,fullvideoname, videoname,vocabDir,featDir,descriptor_path,class_category] = getconfigsfv()
+    vocabDir = '~/remote/simpleData/fv/Vocab'; % Path where dictionary/GMM will be saved.
+    featDir = '~/remote/simpleData/fv/feats'; % Path where features will be saved
+    descriptor_path = '~/remote/simpleData/descriptor/'; % change paths here 
+    video_dir = '~/remote/simple/';
+    video_data_dir = '~/remote/simpleData/';
+    category = dir(video_dir);
+    index = 1;
+    for i = 3 : length(category)
+    	fnames = dir(fullfile(video_dir,category(i).name));
+    	for j = 3: length(fnames)
+        	fullvideoname{index,1}=fullfile(video_dir,category(i).name,fnames(j).name);
+        	videoname{index,1} = fnames(j).name;
+            class_category{index,1}= i-2;
+        	
+            index = index+1;
+        end
+    end
+end

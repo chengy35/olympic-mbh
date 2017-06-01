@@ -1,4 +1,11 @@
 function llcEncodeFeatures(centers,fullvideoname,descriptor_path,featDir,class_category,video_dir)
+   if ~exist(fullfile(featDir_LLC,'mbh'),'dir')
+        mkdir(fullfile(featDir_LLC,'mbh'));
+    end
+    if ~exist(fullfile(featDir_LLC,'cmbh'),'dir')
+        mkdir(fullfile(featDir_LLC,'cmbh'));
+    end
+
     category = dir(video_dir);
     pyramid = [1, 2, 4];                % spatial block structure for the SPM               
     knn = 5;                            % number of neighbors for local coding

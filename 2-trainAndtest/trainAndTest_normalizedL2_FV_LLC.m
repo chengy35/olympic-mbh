@@ -12,7 +12,7 @@ function trainAndTest_normalizedL2_FV_LLC(video_data_dir,fullvideoname,featDir_F
 	j = 1;
 
 	[~,partfile,~] = fileparts(fullvideoname{1});
-	featFile{j} = fullfile(featDir_FV,'w',sprintf('%s.mat',partfile));  
+	featFile{j} = fullfile(featDir_FV,'wmbh',sprintf('%s.mat',partfile));  
 	fvtemp =  dlmread(featFile{j});
 
 	featFile{j} = [fullfile(featDir_LLC,sprintf('/mbh/%d.mat',trn_indx(j)))];
@@ -25,8 +25,8 @@ function trainAndTest_normalizedL2_FV_LLC(video_data_dir,fullvideoname,featDir_F
 			TrainData = zeros(size(trn_indx,1),Dimension);
 			for j = 1:size(trn_indx,1)
 				[~,partfile,~] = fileparts(fullvideoname{trn_indx(j)});
-				featFile{j} = fullfile(featDir_FV,'w',sprintf('%s.mat',partfile));  
-				fprintf('read w in training: %d \n',j);
+				featFile{j} = fullfile(featDir_FV,'wmbh',sprintf('%s.mat',partfile));  
+				fprintf('read wmbh in training: %d \n',j);
 				fvtemp =  dlmread(featFile{j});
 				featFile{j} = [fullfile(featDir_LLC,sprintf('/mbh/%d.mat',trn_indx(j)))];
 				fprintf('read llc in training: %d \n',j);

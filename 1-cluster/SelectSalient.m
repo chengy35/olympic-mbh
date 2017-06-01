@@ -1,4 +1,10 @@
 function [centers] =  SelectSalient(kmeans_size,totalnumber,fullvideoname,descriptor_path,vocabDir)
+    
+    if ~exist(fullfile(vocabDir,'mbh'),'dir')
+        mkdir(fullfile(vocabDir,'mbh'));
+    end
+    vocabDir = [vocabDir '/mbh/'];
+
     sampleFeatFile = fullfile(vocabDir,'featfile.mat');
     modelFilePath = fullfile(vocabDir,'kmenasmodel.mat');
     if exist(modelFilePath,'file')
@@ -18,9 +24,9 @@ function [centers] =  SelectSalient(kmeans_size,totalnumber,fullvideoname,descri
 		if exist(descriptorFile,'file')
 		        load(descriptorFile);
 	             else
-		      fprintf('%s not exist !!!',descriptorFile);
-                                [obj,mbhx,mbhy] = extract_improvedfeatures(fullvideoname{i}) ;
-                                save(descriptorFile,'obj','mbhx','mbhy'); 
+		        fprintf('%s not exist !!!',descriptorFile);
+                                    [obj,trj,hog,hof,mbhx,mbhy] = extract_improvedfeatures(fullvideoname{i}) ;
+                                    save(descriptorFile,'obj','trj','hog','hof','mbhx','mbhy'); 
 		end
                           mbhx = sqrt(mbhx);mbhy = sqrt(mbhy);
 	        	rnsam = randperm(size(mbhx,1));

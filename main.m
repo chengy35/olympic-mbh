@@ -26,7 +26,7 @@ addpath('~/lib/natsort');
 	[gmm] = getGMMAndBOW(fullvideoname,vocabDir,descriptor_path);
 	% generate Fisher Vectors
 	fprintf('generate Fisher Vectors \n');
-	FVEncodeFeatures_w(fullvideoname,gmm,vocabDir,st,send,featDir_FV,descriptor_path,'mbh-w');
+	FVEncodeFeatures_w(fullvideoname,gmm,vocabDir,st,send,featDir_FV,descriptor_path,'mbh');
 	clear gmm;
 	getVideoDarwin(fullvideoname,featDir_FV,descriptor_path);
 

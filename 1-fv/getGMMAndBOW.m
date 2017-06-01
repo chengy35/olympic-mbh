@@ -2,6 +2,12 @@ function [gmm] = getGMMAndBOW(fullvideoname,vocabDir,descriptor_path,video_dir)
     pcaFactor = 0.5;
     totalnumber = 256000;
     gmmsize = 256;
+
+    if ~exist(fullfile(vocabDir,'mbh'),'dir')
+        mkdir(fullfile(vocabDir,'mbh'));
+    end
+    vocabDir = [vocabDir,'mbh/'];
+    
     sampleFeatFile = fullfile(vocabDir,'featfile.mat');
     modelFilePath = fullfile(vocabDir,'gmmvocmodel.mat');
     if exist(modelFilePath,'file')
@@ -23,8 +29,8 @@ function [gmm] = getGMMAndBOW(fullvideoname,vocabDir,descriptor_path,video_dir)
                     load(descriptorFile);
                 else
                     fprintf('%s not exist !!!',descriptorFile);
-                    [obj,mbhx,mbhy] = extract_improvedfeatures(fullvideoname{i}) ;
-                    save(descriptorFile,'obj','mbhx','mbhy'); 
+                    [obj,trj,hog,hof,mbhx,mbhy] = extract_improvedfeatures(fullvideoname{i}) ;
+                    save(descriptorFile,'obj','trj','hog','hof','mbhx','mbhy'); 
                 end
                 mbhx = sqrt(mbhx);mbhy = sqrt(mbhy);
                 rnsam = randperm(size(mbhx,1));

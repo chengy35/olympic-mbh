@@ -16,7 +16,7 @@ addpath('~/lib/natsort');
 	fprintf('End : %d \n',send);
 	addpath('0-trajectory');
 	fprintf('select improved dense trajectory \n');
-	getSalient(st,send,fullvideoname,descriptor_path)
+	getSalient(st,send,fullvideoname,descriptor_path);
 
 	encode = 'fv';
 	fprintf('begin fv encoding\n');

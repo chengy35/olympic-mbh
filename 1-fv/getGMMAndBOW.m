@@ -3,10 +3,10 @@ function [gmm] = getGMMAndBOW(fullvideoname,vocabDir,descriptor_path,video_dir)
     totalnumber = 256000;
     gmmsize = 256;
 
-    if ~exist(fullfile(vocabDir,'mbh'),'dir')
-        mkdir(fullfile(vocabDir,'mbh'));
+    if ~exist(fullfile(vocabDir,'/mbh'),'dir')
+        mkdir(fullfile(vocabDir,'/mbh'));
     end
-    vocabDir = [vocabDir,'mbh/'];
+    vocabDir = [vocabDir,'/mbh/'];
     
     sampleFeatFile = fullfile(vocabDir,'featfile.mat');
     modelFilePath = fullfile(vocabDir,'gmmvocmodel.mat');

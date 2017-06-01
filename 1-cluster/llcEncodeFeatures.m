@@ -1,4 +1,4 @@
-function llcEncodeFeatures(centers,fullvideoname,descriptor_path,featDir,class_category,video_dir)
+function llcEncodeFeatures(centers,fullvideoname,descriptor_path,featDir_LLC,class_category,video_dir)
    if ~exist(fullfile(featDir_LLC,'mbh'),'dir')
         mkdir(fullfile(featDir_LLC,'mbh'));
     end
@@ -14,7 +14,7 @@ function llcEncodeFeatures(centers,fullvideoname,descriptor_path,featDir,class_c
     	[~,partfile,~] = fileparts(fullvideoname{i});
             descriptorFile = fullfile(descriptor_path,sprintf('%s.mat',partfile));  
 	if exist(descriptorFile,'file') == 2 
-		mbhfeatFile = fullfile(featDir,sprintf('/mbh/%d.mat',i));
+		mbhfeatFile = fullfile(featDir_LLC,sprintf('/mbh/%d.mat',i));
 		if exist(mbhfeatFile,'file') == 0
 			timest = tic();
 			index = index + 1;

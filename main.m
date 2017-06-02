@@ -19,7 +19,7 @@ addpath('~/lib/natsort');
 	getSalient(st,send,fullvideoname,descriptor_path);
 
 	gmmSize = 256;
-	AllFeatureDimension = 396;
+	mbhFeatureDimension = 96*2;
 
 	encode = 'fv';
 	fprintf('begin fv encoding\n');
@@ -31,7 +31,7 @@ addpath('~/lib/natsort');
 	fprintf('generate Fisher Vectors \n');
 	FVEncodeFeatures_w(fullvideoname,gmm,vocabDir,st,send,featDir_FV,descriptor_path,'mbh');
 	clear gmm;
-	getVideoDarwin(fullvideoname,featDir_FV,descriptor_path,gmmSize,AllFeatureDimension);
+	getVideoDarwin(fullvideoname,featDir_FV,descriptor_path,gmmSize,mbhFeatureDimension);
 
 	encode = 'llc';
 	fprintf('begin llc encoding\n');

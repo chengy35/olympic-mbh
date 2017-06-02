@@ -36,7 +36,7 @@ addpath('~/lib/natsort');
 	encode = 'llc';
 	fprintf('begin llc encoding\n');
 	addpath('1-cluster');
-	totalnumber = 256000;
+	totalnumber = 1000000;
 	kmeans_size = 8000;
 	fprintf('clustering \n');
 	centers = SelectSalient(kmeans_size,totalnumber,fullvideoname,descriptor_path,vocabDir);

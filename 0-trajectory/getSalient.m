@@ -2,13 +2,13 @@ function getSalient(st,send,fullvideoname,descriptor_path)
     totalSize = 0;
     num_videos = size(fullvideoname,1); 
     for i = st : min(send,numel(fullvideoname))             
-        timest = tic();
+        timest = tic();        
         [~,partfile,~] = fileparts(fullvideoname{i});
         descriptorFile = fullfile(descriptor_path,sprintf('%s.mat',partfile));      
         if ~exist(descriptorFile,'file')
             try 
-            [obj,mbhx,mbhy] = extract_improvedfeatures(fullvideoname{i});
-            save(descriptorFile,'obj','mbhx','mbhy');
+            [obj,trj,hog,hof,mbhx,mbhy] = extract_improvedfeatures(fullvideoname{i});
+            save(descriptorFile,'obj','trj','hog','hof','mbhx','mbhy');
             catch e
                 fprintf('ERROR %s\n');
                 e

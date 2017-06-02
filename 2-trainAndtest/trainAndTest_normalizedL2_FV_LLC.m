@@ -49,7 +49,7 @@ function trainAndTest_normalizedL2_FV_LLC(video_data_dir,fullvideoname,featDir_F
 		    	TestData = zeros(size(test_indx,1),Dimension);
 			for j = 1:size(test_indx,1)
 				[~,partfile,~] = fileparts(fullvideoname{test_indx(j)});
-				featFile{j} = fullfile(featDir_FV,'w',sprintf('%s.mat',partfile));  
+				featFile{j} = fullfile(featDir_FV,'wmbh',sprintf('%s.mat',partfile));  
 				fprintf('read w in testing : %d \n',j);
 				fvtemp = dlmread(featFile{j});
 				featFile{j} = [fullfile(featDir_LLC,sprintf('/mbh/%d.mat',test_indx(j)))];

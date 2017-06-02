@@ -12,7 +12,7 @@ function trainAndTest_normalizedL2_FV(video_data_dir,fullvideoname,featDir_FV,fe
 	j = 1;
 
 	[~,partfile,~] = fileparts(fullvideoname{1});
-	featFile{j} = fullfile(featDir_FV,'w',sprintf('%s.mat',partfile));  
+	featFile{j} = fullfile(featDir_FV,'wmbh',sprintf('%s.mat',partfile));  
 	fvtemp =  dlmread(featFile{j});
 
 	Dimension = size(fvtemp,2);
@@ -22,8 +22,8 @@ function trainAndTest_normalizedL2_FV(video_data_dir,fullvideoname,featDir_FV,fe
 			TrainData = zeros(size(trn_indx,1),Dimension);
 			for j = 1:size(trn_indx,1)
 				[~,partfile,~] = fileparts(fullvideoname{trn_indx(j)});
-				featFile{j} = fullfile(featDir_FV,'w',sprintf('%s.mat',partfile));  
-				fprintf('read w in training: %d \n',j);
+				featFile{j} = fullfile(featDir_FV,'wmbh',sprintf('%s.mat',partfile));  
+				fprintf('read wmbh in training: %d \n',j);
 				temp =  dlmread(featFile{j});
 				TrainData(j,:)  = normalizeL2(sqrt(temp'));
 				clear temp;
@@ -40,8 +40,8 @@ function trainAndTest_normalizedL2_FV(video_data_dir,fullvideoname,featDir_FV,fe
 		    	TestData = zeros(size(test_indx,1),Dimension);
 			for j = 1:size(test_indx,1)
 				[~,partfile,~] = fileparts(fullvideoname{test_indx(j)});
-				featFile{j} = fullfile(featDir_FV,'w',sprintf('%s.mat',partfile));  
-				fprintf('read w in testing : %d \n',j);
+				featFile{j} = fullfile(featDir_FV,'wmbh',sprintf('%s.mat',partfile));  
+				fprintf('read wmbh in testing : %d \n',j);
 				temp = dlmread(featFile{j});
 				TestData(j,:)  = normalizeL2(sqrt(temp'));
 				clear temp;

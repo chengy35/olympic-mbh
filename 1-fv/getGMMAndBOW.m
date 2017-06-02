@@ -1,7 +1,5 @@
-function [gmm] = getGMMAndBOW(fullvideoname,vocabDir,descriptor_path,video_dir)
+function [gmm] = getGMMAndBOW(fullvideoname,vocabDir,descriptor_path,video_dir,totalnumber,gmmsize)
     pcaFactor = 0.5;
-    totalnumber = 256000;
-    gmmsize = 256;
 
     if ~exist(fullfile(vocabDir,'/mbh'),'dir')
         mkdir(fullfile(vocabDir,'/mbh'));

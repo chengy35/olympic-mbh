@@ -18,6 +18,7 @@ addpath('~/lib/natsort');
 	fprintf('select improved dense trajectory \n');
 	getSalient(st,send,fullvideoname,descriptor_path);
 
+	totalnumber = 1000000;
 	gmmSize = 256;
 	mbhFeatureDimension = 96*2;
 
@@ -26,7 +27,7 @@ addpath('~/lib/natsort');
 	addpath('1-fv');
 	fprintf('getGMM \n');
 	% create GMM model, Look at this function see if parameters are okay for you.
-	[gmm] = getGMMAndBOW(fullvideoname,vocabDir,descriptor_path);
+	[gmm] = getGMMAndBOW(fullvideoname,vocabDir,descriptor_path,totalnumber,gmmSize);
 	% generate Fisher Vectors
 	fprintf('generate Fisher Vectors \n');
 	FVEncodeFeatures_w(fullvideoname,gmm,vocabDir,st,send,featDir_FV,descriptor_path,'mbh');
@@ -36,7 +37,7 @@ addpath('~/lib/natsort');
 	encode = 'llc';
 	fprintf('begin llc encoding\n');
 	addpath('1-cluster');
-	totalnumber = 1000000;
+	
 	kmeans_size = 8000;
 	fprintf('clustering \n');
 	centers = SelectSalient(kmeans_size,totalnumber,fullvideoname,descriptor_path,vocabDir);
@@ -45,6 +46,6 @@ addpath('~/lib/natsort');
 	clear centers;
 
 	addpath('2-trainAndtest');
-	trainAndTest_normalizedL2_LLC(video_data_dir,fullvideoname,featDir_FV,featDir_LLC,encode,class_category,actionName);
-%	trainAndTest_normalizedL2_FV(video_data_dir,fullvideoname,featDir_FV,featDir_LLC,encode,class_category,actionName);
+%	trainAndTest_normalizedL2_LLC(video_data_dir,fullvideoname,featDir_FV,featDir_LLC,encode,class_category,actionName);
+	trainAndTest_normalizedL2_FV(video_data_dir,fullvideoname,featDir_FV,featDir_LLC,encode,class_category,actionName);
 %	trainAndTest_normalizedL2_FV_LLC(video_data_dir,fullvideoname,featDir_FV,featDir_LLC,encode,actionName);

@@ -24,7 +24,7 @@ function trainAndTest_normalizedL2_FV(video_data_dir,fullvideoname,featDir_FV,fe
 				featFile{j} = fullfile(featDir_FV,'wmbh',sprintf('%s.mat',partfile));  
 				fprintf('read wmbh in training: %d \n',j);
 				temp =  dlmread(featFile{j});
-				TrainData(j,:)  = normalize(sqrt(temp'),'Power-Intra-L2',4*256);
+				TrainData(j,:)  = normalize(sqrt(temp'));
 				clear temp;
 				
 			end
@@ -42,7 +42,7 @@ function trainAndTest_normalizedL2_FV(video_data_dir,fullvideoname,featDir_FV,fe
 				featFile{j} = fullfile(featDir_FV,'wmbh',sprintf('%s.mat',partfile));  
 				fprintf('read wmbh in testing : %d \n',j);
 				temp = dlmread(featFile{j});
-				TestData(j,:)  = normalize(sqrt(temp'),'Power-Intra-L2',4*256);
+				TestData(j,:)  = normalize(sqrt(temp'));
 				clear temp;
 				
 			end

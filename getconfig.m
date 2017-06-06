@@ -1,10 +1,10 @@
 function [video_data_dir,video_dir,fullvideoname, videoname,vocabDir,featDir_FV,featDir_LLC,descriptor_path,class_category,actionName] = getconfig()
-    vocabDir = '~/remote/olympicData/Vocab'; % Path where dictionary/GMM will be saved.
-    featDir_LLC = '~/remote/olympicData/llc/feats'; % Path where features will be saved
-    featDir_FV = '~/remote/olympicData/fv/feats'; % Path where features will be saved
-    descriptor_path = '~/remote/olympicData/descriptor/'; % change paths here 
-    video_dir = '~/remote/oly_sports/';
-    video_data_dir = '~/remote/olympicData/';
+    vocabDir = '/mnt/remote/olympicData/Vocab'; % Path where dictionary/GMM will be saved.
+    featDir_LLC = '/mnt/remote/olympicData/llc/feats'; % Path where features will be saved
+    featDir_FV = '/mnt/remote/olympicData/fv/feats'; % Path where features will be saved
+    descriptor_path = '/mnt/remote/olympicData/descriptor/'; % change paths here 
+    video_dir = '/mnt/remote/oly_sports/';
+    video_data_dir = '/mnt/remote/olympicData/';
     category = dir(video_dir);
     index = 1;
     for i = 3 : length(category)

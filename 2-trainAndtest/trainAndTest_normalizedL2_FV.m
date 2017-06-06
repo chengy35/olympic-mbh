@@ -14,7 +14,6 @@ function trainAndTest_normalizedL2_FV(video_data_dir,fullvideoname,featDir_FV,fe
 	[~,partfile,~] = fileparts(fullvideoname{1});
 	featFile{j} = fullfile(featDir_FV,'wmbh',sprintf('%s.mat',partfile));  
 	fvtemp =  dlmread(featFile{j});
-
 	Dimension = size(fvtemp,2);
 
 	if ~exist('TestData_Kern_cell.mat','file')
@@ -25,7 +24,7 @@ function trainAndTest_normalizedL2_FV(video_data_dir,fullvideoname,featDir_FV,fe
 				featFile{j} = fullfile(featDir_FV,'wmbh',sprintf('%s.mat',partfile));  
 				fprintf('read wmbh in training: %d \n',j);
 				temp =  dlmread(featFile{j});
-				TrainData(j,:)  = normalizeL2(sqrt(temp'));
+				TrainData(j,:)  = normalize(sqrt(temp'),Power-Intra-L2,2*256);
 				clear temp;
 				
 			end
@@ -43,7 +42,7 @@ function trainAndTest_normalizedL2_FV(video_data_dir,fullvideoname,featDir_FV,fe
 				featFile{j} = fullfile(featDir_FV,'wmbh',sprintf('%s.mat',partfile));  
 				fprintf('read wmbh in testing : %d \n',j);
 				temp = dlmread(featFile{j});
-				TestData(j,:)  = normalizeL2(sqrt(temp'));
+				TestData(j,:)  = normalize(sqrt(temp'),Power-Intra-L2,2*256);
 				clear temp;
 				
 			end
@@ -89,12 +88,4 @@ function [ap ] = train_and_classify(TrainData_Kern_cell,TestData_Kern_cell,trnLB
 	[~, acc, scores] = svmpredict(testLBL, TestData_Kern_cell ,model);	                 
 	[rc, pr, info] = vl_pr(testLBL, scores(:,1)) ; 
 	ap = info.ap;
-end
-
-function X = normalizeL2(X)
-	for i = 1 : size(X,1)
-		if norm(X(i,:)) ~= 0
-			X(i,:) = X(i,:) ./ norm(X(i,:));
-		end
-    end	   
 end
